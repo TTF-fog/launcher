@@ -17,4 +17,4 @@ jobs:
       - name: run
         run: |
             cd WpfApp5
-            msbuild /m
+            msbuild /m Flarial.Launcher.csproj
