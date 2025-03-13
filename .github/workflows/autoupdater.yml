@@ -17,7 +17,5 @@ jobs:
           global-json-file: WpfApp5/global.json
 
        
-      - run: dotnet build --configuration Release Flarial.Launcher
-      - name: Create the package
-        run: dotnet pack --configuration Release Flarial.Launcher
+      - run: dotnet publish WpfApp5/Flarial.Launcher.csproj
      
