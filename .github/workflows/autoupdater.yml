@@ -12,11 +12,9 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-         
-          dotnet-version: '8.0.x'
-
-       
-      - run: dotnet publish WpfApp5/Flarial.Launcher.csproj
-     
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+      - name: run
+        run: |
+            cd WpfApp5
+            msbuild /m
