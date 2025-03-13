@@ -14,19 +14,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: check commit type
         run: |
-          - name: "Check commit type"
-              id: type
-              run: |
-
-                
-                if  [[ "${{ github.event.head_commit.message }}" == *"release:"* ]]; then
-                    echo "Continuing to build as release"
-                    echo status=release >> "$GITHUB_OUTPUT"
-                else
-                echo "Not a release commit, exiting (note: this may take 5-10 seconds)"
-                gh run cancel ${{ github.run_id }}
-                gh run watch ${{ github.run_id }}
-                fi
+          
+          if  [[ "${{ github.event.head_commit.message }}" == *"release:"* ]]; then
+              echo "Continuing to build as release"
+             
+          else
+          echo "Not a release commit, exiting (note: this may take 5-10 seconds)"
+          gh run cancel ${{ github.run_id }}
+          gh run watch ${{ github.run_id }}
+          fi
         shell: bash
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
