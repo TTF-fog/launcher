@@ -1,4 +1,4 @@
-name: Upload dotnet package
+name: Build launcher and upload
 
 on:
   push:
