@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '4.8.x' # SDK Version to use.
-          
+   
        
       - run: dotnet build --configuration Release Flarial.Launcher
       - name: Create the package
