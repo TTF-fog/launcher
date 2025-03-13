@@ -1,4 +1,4 @@
-name: Build launcher and upload
+name: Builds launcher and uploads
 
 on:
   push:
