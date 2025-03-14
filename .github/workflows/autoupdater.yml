@@ -62,9 +62,8 @@ jobs:
           git add Launcher/Flarial.Launcher.exe
           git commit -a -m "Update launcher"
           git push origin main
-  name: Launcher version bump
+  Launcher-version-bump:
   on:
-
     push:
       branches: [ "main" ]
 
