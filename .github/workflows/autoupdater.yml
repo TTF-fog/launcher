@@ -26,8 +26,6 @@ jobs:
           fi
       
 
-      - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v2
       - uses: actions/checkout@v4
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
@@ -35,12 +33,11 @@ jobs:
           global-json-file: WpfApp5/global.json
       - name: Restore NuGet packages
         run: |
-          cd WpfApp5
           dotnet restore
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
       - name: build
         run: |
-            
-            msbuild -t:Restore Flarial.Launcher.csproj
             msbuild /m Flarial.Launcher.csproj
             cd D:\a\launcher\launcher\WpfApp5\bin\Debug\net481\win-x64
             ls
