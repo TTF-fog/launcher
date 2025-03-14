@@ -36,7 +36,6 @@ jobs:
       - name: Restore NuGet packages
         run: |
           cd WpfApp5
-          dotnet list package --outdated 
           dotnet restore
       - name: build
         run: |
