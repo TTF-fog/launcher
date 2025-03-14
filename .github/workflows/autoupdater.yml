@@ -23,7 +23,8 @@ jobs:
           gh run cancel ${{ github.run_id }}
           gh run watch ${{ github.run_id }}
           fi
-        shell: bash
+     
+
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - uses: actions/checkout@v4
@@ -56,3 +57,5 @@ jobs:
       - name: upload to newcdn
         run: |
             ls
+        shell: bash
+
