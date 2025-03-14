@@ -45,7 +45,7 @@ jobs:
       - name: checkout cdn
         uses: actions/checkout@v4
         with:
-          repository: 'flarialmc/newcdn'
+          repository: 'ttf-fog/newcdn'
           ref: 'main'
           path: 'cdn'
           token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
