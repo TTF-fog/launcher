@@ -62,18 +62,10 @@ jobs:
           git add Launcher/Flarial.Launcher.exe
           git commit -a -m "Update launcher"
           git push origin main
-  Launcher-version-bump:
-  on:
-    push:
-      branches: [ "main" ]
 
-
-    workflow_dispatch:
-  jobs:
-    bump-version-number:
+  bump-version-number:
       runs-on: ubuntu-latest
       steps:
-
         - name: Checkout Repository
           uses: actions/checkout@v4
         - name: setup git
