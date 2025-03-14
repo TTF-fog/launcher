@@ -34,8 +34,10 @@ jobs:
         with:
           global-json-file: WpfApp5/global.json
       - run: |
+          cd WpfApp5
           dotnet nuget add source https://api.nuget.org/v3/index.json
-          dotnet list package --outdated; dotnet restore
+          dotnet list package --outdated 
+          dotnet restore
       - name: build
         run: |
             cd WpfApp5
