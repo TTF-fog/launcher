@@ -112,7 +112,7 @@ jobs:
       - name: Upload to newcdn
         run: |
           cd cdn
-          cp D:/a/launcher/launcher/WpfApp5/bin/Release/net481/win-x64/Flarial.Launcher.exe ./launcher/Flarial.Launcher.exe
+          cp D:/a/launcher/launcher/WpfApp5/bin/Release/net481/Flarial.Launcher.exe ./launcher/Flarial.Launcher.exe
           git add Launcher/Flarial.Launcher.exe
           git commit -a -m "Update launcher"
           git push origin main
