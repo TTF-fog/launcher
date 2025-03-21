@@ -98,7 +98,7 @@ jobs:
         run: |
           git reset --hard
           export hash=$(git log --grep="release" --oneline | head -n 1 | cut -d ' ' -f1)
-          git revert $hash -m "revert version bump due to build failure"
+          git revert $hash 
           git push origin main
         shell: bash
       - name: Checkout cdn repository
