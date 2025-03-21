@@ -1,4 +1,4 @@
-name: Build launcher and bump version number
+name: Build launcher and bump version number (cdn)
 on:
   push:
     branches: ["main"]
