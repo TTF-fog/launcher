@@ -105,8 +105,7 @@ jobs:
           cd cdn
           git config --global user.name "Github Actions"
           git config --global user.email "actions@github.com"
-         
-          export hash=$(git log --grep="release" --oneline | head -n 1 | cut -d ' ' -f1)
+          export hash=$(git log --grep="Bump launcher version" --oneline | head -n 1 | cut -d ' ' -f1)
           git revert $hash 
           git push origin main
         shell: bash
