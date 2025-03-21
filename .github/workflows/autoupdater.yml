@@ -93,7 +93,7 @@ jobs:
           msbuild /p:Configuration=Release /m Flarial.Launcher.csproj
           cd D:\a\launcher\launcher\WpfApp5\bin\Release
           ls
-          cd D:\a\launcher\launcher\WpfApp5\bin\Release\net481\win-x64
+          cd D:\a\launcher\launcher\WpfApp5\bin\Release\net481\
           ls
 
       - name: Checkout cdn repository
