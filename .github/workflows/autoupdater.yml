@@ -1,4 +1,4 @@
-name: Build launcher and bump version on cdn
+name: Build launcher and bump version
 
 on:
   push:
