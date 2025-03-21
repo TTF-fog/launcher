@@ -35,7 +35,6 @@ jobs:
           export new_version=$(cat WpfApp5/AssemblyInfo.cs | tail -n 1 | sed -n 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/p' |  awk -F. -v OFS=. 'NF==1{print ++$NF}; NF>1{if(length($NF+1)>length($NF))$(NF-1)++; $NF=sprintf("%0*d", length($NF), ($NF+1)%(10^length($NF))); print}')
           echo $old_version
           echo $new_version
-          echo "version=$new_version" >> $GITHUB_ENV
           sed -i "s/$old_version/$new_version/g" WpfApp5/AssemblyInfo.cs 
 
       - name: push to origin
@@ -88,13 +87,18 @@ jobs:
       - name: Build
         run: |
           cd WpfApp5
+          ewgfge
           msbuild -t:Restore Flarial.Launcher.csproj
           msbuild /p:Configuration=Release /m Flarial.Launcher.csproj
           cd D:\a\launcher\launcher\WpfApp5\bin\Release
-          ls
-          cd D:\a\launcher\launcher\WpfApp5\bin\Release\net481\
-          ls
 
+      - name: Revert if failed
+        if: failure()
+        run: |
+          git reset --hard
+          export hash=git log --grep="release" --oneline | head -n 1 | cut -d ' ' -f1
+          git revert hash -m "revert version bump due to build failure"
+          git push origin main
       - name: Checkout cdn repository
         uses: actions/checkout@v4
         with:
