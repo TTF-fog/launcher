@@ -1,4 +1,4 @@
-name: Build release launcher and bump version
+name: Build launcher and bump version
 
 on:
   push:
