@@ -57,7 +57,6 @@ jobs:
       - name: upload to newcdn
 
         run: |
-          echo ${{ env.version }}
           export new_version="${{ env.version }}"
           contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
           echo -E "${contents}" > launcher/launcherVersion.txt
