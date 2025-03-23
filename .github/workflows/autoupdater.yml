@@ -58,14 +58,16 @@ jobs:
 
         run: |
           echo ${{ env.version }}
-          export new_version="${{ env.version }}"
+          ls
           ls launcher
+          export new_version="${{ env.version }}"
           contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
+          
           echo -E "${contents}" > launcher/launcherVersion.txt
           cat launcher/launcherVersion.txt
           git add launcher/launcherVersion.txt
           git commit -m "Bump launcher version"
-          git push origin main
+          # git push origin main
 
   deploy:
     needs: bump-version-number
