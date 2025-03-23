@@ -46,7 +46,7 @@ jobs:
       - name: checkout cdn
         uses: actions/checkout@v4
         with:
-          repository: 'ttf-fog/newcdn'
+          repository: 'TTF-fog/newcdn'
           ref: 'main'
           token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
       - name: setup git config
@@ -116,7 +116,7 @@ jobs:
 
       - name: Upload to newcdn
         run: |
-          cd cdn
+          cd cdnf
           cp D:/a/launcher/launcher/WpfApp5/bin/Release/net481/Flarial.Launcher.exe ./launcher/Flarial.Launcher.exe
           git add Launcher/Flarial.Launcher.exe
           git commit -a -m "Update launcher"
