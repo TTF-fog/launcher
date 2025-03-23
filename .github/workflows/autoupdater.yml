@@ -51,6 +51,7 @@ jobs:
           token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
       - name: setup git config
         run: |
+          ls
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@example.com"
       - name: upload to newcdn
@@ -58,7 +59,7 @@ jobs:
         run: |
           echo ${{ env.version }}
           export new_version="${{ env.version }}"
-          
+          ls launcher
           contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
           echo -E "${contents}" > launcher/launcherVersion.txt
           cat launcher/launcherVersion.txt
@@ -79,7 +80,7 @@ jobs:
       - name: Checkout cdn repository
         uses: actions/checkout@v4
         with:
-          repository: 'ttf-fog/newcdn'
+          repository: 'flarialmc/newcdn'
           ref: 'main'
           path: 'cdn'
           token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
@@ -94,11 +95,8 @@ jobs:
       - name: Build
         run: |
           cd WpfApp5
-          ewgfge
           msbuild -t:Restore Flarial.Launcher.csproj
           msbuild /p:Configuration=Release /m Flarial.Launcher.csproj
-          cd D:\a\launcher\launcher\WpfApp5\bin\Release
-
       - name: Revert if failed
         if: failure()
         run: |
