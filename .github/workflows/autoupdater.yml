@@ -78,7 +78,7 @@ jobs:
       - name: Checkout cdn repository
         uses: actions/checkout@v4
         with:
-          repository: 'flarialmc/newcdn'
+          repository: 'ttf-fog/newcdn'
           ref: 'main'
           path: 'cdn'
           token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
@@ -93,6 +93,7 @@ jobs:
       - name: Build
         run: |
           cd WpfApp5
+          cat AssemblyInfo.cs
           msbuild -t:Restore Flarial.Launcher.csproj
           msbuild /p:Configuration=Release /m Flarial.Launcher.csproj
       - name: Revert if failed
