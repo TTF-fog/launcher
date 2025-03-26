@@ -111,6 +111,7 @@ jobs:
           git push origin main
       - name: upload version to newcdn
         run: |
+          cd cdn
           export new_version="${{ env.OUTPUT1 }}"
           contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
           echo -E "${contents}" > launcher/launcherVersion.txt
