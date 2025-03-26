@@ -120,3 +120,4 @@ jobs:
           git push origin main
         env:
           OUTPUT1: ${{ needs.bump-version-number.outputs.version_number}}
+        shell: bash
