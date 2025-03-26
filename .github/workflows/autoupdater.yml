@@ -1,4 +1,4 @@
-name: Build launcher and bump version number (cdn)
+name: Build launcher and bump version number
 on:
   push:
     branches: ["main"]
@@ -45,27 +45,6 @@ jobs:
         run: |
           git add WpfApp5/AssemblyInfo.cs
           git commit -m "Update file version"
-          git push origin main
-      - name: checkout cdn
-        uses: actions/checkout@v4
-        with:
-          repository: 'TTF-fog/newcdn'
-          ref: 'main'
-          token: ${{secrets.ACTIONS_GITHUB_TOKEN}}
-      - name: setup git config
-        run: |
-          ls
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@example.com"
-      - name: upload to newcdn
-
-        run: |
-          export new_version="${{ env.version }}"
-          contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
-          echo -E "${contents}" > launcher/launcherVersion.txt
-          cat launcher/launcherVersion.txt
-          git add launcher/launcherVersion.txt
-          git commit -m "Bump launcher version"
           git push origin main
 
   deploy:
@@ -130,3 +109,14 @@ jobs:
           git add launcher/Flarial.Launcher.exe
           git commit -a -m "Update launcher"
           git push origin main
+      - name: upload version to newcdn
+        run: |
+          export new_version="${{ env.OUTPUT1 }}"
+          contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
+          echo -E "${contents}" > launcher/launcherVersion.txt
+          cat launcher/launcherVersion.txt
+          git add launcher/launcherVersion.txt
+          git commit -m "Bump launcher version"
+          git push origin main
+        env:
+          OUTPUT1: ${{ needs.bump-version-number.outputs.version_number}}
