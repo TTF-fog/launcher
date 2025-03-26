@@ -85,33 +85,12 @@ jobs:
           cat AssemblyInfo.cs
           msbuild -t:Restore Flarial.Launcher.csproj
           msbuild /p:Configuration=Release /m Flarial.Launcher.csproj
-      - name: Revert if failed
-        if: failure()
+      - name: update new version
+        if: success()
         run: |
-          cd ../cdn
-          git config --global user.name "Github Actions"
-          git config --global user.email "actions@github.com"
-          export hash=$(git log --grep="Bump launcher version" --oneline | head -n 1 | cut -d ' ' -f1)
-          git revert $hash 
-          git push origin main
-        shell: bash
-
-
-      - name: Setup git config
-        run: |
+          cd cdn
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@example.com"
-
-      - name: Upload to newcdn
-        run: |
-          cd cdn
-          cp D:/a/launcher/launcher/WpfApp5/bin/Release/net481/Flarial.Launcher.exe ./launcher/Flarial.Launcher.exe
-          git add launcher/Flarial.Launcher.exe
-          git commit -a -m "Update launcher"
-          git push origin main
-      - name: upload version to newcdn
-        run: |
-          cd cdn
           export new_version="${{ env.OUTPUT1 }}"
           contents="$(jq '.version = "'$new_version'"' launcher/launcherVersion.txt)" && \
           echo -E "${contents}" > launcher/launcherVersion.txt
@@ -119,6 +98,10 @@ jobs:
           git add launcher/launcherVersion.txt
           git commit -m "Bump launcher version"
           git push origin main
+          cp D:/a/launcher/launcher/WpfApp5/bin/Release/net481/Flarial.Launcher.exe ./launcher/Flarial.Launcher.exe
+          git add launcher/Flarial.Launcher.exe
+          git commit -a -m "Update launcher"
+          git push origin main
         env:
           OUTPUT1: ${{ needs.bump-version-number.outputs.version_number}}
-        shell: bash
+
