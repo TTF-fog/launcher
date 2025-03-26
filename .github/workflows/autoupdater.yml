@@ -87,7 +87,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v4
         with:
-          global-json-file: WpfApp5/global.json
+          global-json-file: launcher/WpfApp5/global.json
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
